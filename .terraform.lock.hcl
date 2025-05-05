@@ -5,6 +5,7 @@ provider "registry.opentofu.org/bpg/proxmox" {
   version     = "0.77.0"
   constraints = "0.77.0"
   hashes = [
+    "h1:TWQ5oJu/ViqcdOpKGtv/ERRUOa6hmn2rbjiotmFPqS0=",
     "h1:rTjzldtRy7TpTTZPRiZSkgwBbs5rxcYTI3UuHti5nts=",
     "zh:02dc7285fd0e7226f4e1cd572f7facdc904c23121de40f8d1c989b0a8daaaa1c",
     "zh:1fd3d2bf0a31a4c8234f5a3ca7c04069756ec12efc50065a77d86896084540e8",
