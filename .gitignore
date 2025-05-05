@@ -7,6 +7,7 @@
 
 # Répertoires générés par Terraform/OpenTofu
 .terraform/
+secrets.auto.tfvars
 
 # Fichiers d'état Terraform/OpenTofu
 *.tfstate
