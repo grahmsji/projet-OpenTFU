@@ -3,7 +3,7 @@
 
 # Lock files pour gérer les dépendances (optionnel mais souvent inutile dans Git)
 .terraform.lock.hcl
-secrets.auto.tfvars
+
 
 # Répertoires générés par Terraform/OpenTofu
 .terraform/
