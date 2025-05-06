@@ -24,9 +24,12 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_24_20250430" {
   url                 = "http://cloud-images.ubuntu.com/noble/20250430/noble-server-cloudimg-amd64.img"
 }
 resource "proxmox_virtual_environment_vm" "test1" {
-  name       = "test8"
-  vm_id      = 8888
-  node_name  = "st1pve3"
+  name      = "test8"
+  vm_id     = 8888
+  node_name = "st1pve3"
+  depends_on = [
+    proxmox_virtual_environment_network_linux_bridge.pve3_vmbr20
+  ]
   tags       = ["tofu", "ubuntu"]
   on_boot    = true
   protection = false
@@ -47,7 +50,7 @@ resource "proxmox_virtual_environment_vm" "test1" {
     iothread     = true
   }
   network_device {
-    bridge = "vmbr0"
+    bridge = "vmbr20"
   }
   initialization {
     datastore_id = "vms-shared"
@@ -77,8 +80,11 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_24_04_1" {
   url                 = "http://download.proxmox.com/images/system/debian-12-standard_12.7-1_amd64.tar.zst"
 }
 resource "proxmox_virtual_environment_container" "test2" {
-  vm_id         = 8881
-  node_name     = "st1pve2"
+  vm_id     = 8881
+  node_name = "st1pve2"
+  depends_on = [
+    proxmox_virtual_environment_network_linux_bridge.pve2_vmbr20
+  ]
   tags          = ["tofu", "ubuntu"]
   start_on_boot = true
   protection    = false
@@ -106,6 +112,7 @@ resource "proxmox_virtual_environment_container" "test2" {
     }
   }
   network_interface {
-    name = "vmbr0"
+    name   = "net0"
+    bridge = "vmbr20"
   }
 }
