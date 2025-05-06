@@ -7,3 +7,7 @@ variable "proxmox_api_token" {
   type        = string
   sensitive   = true
 }
+variable "root_ssh_keys" {
+  description = "SSH keys list for root user"
+  type        = list(string)
+}

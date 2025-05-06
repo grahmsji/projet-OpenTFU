@@ -15,7 +15,6 @@ provider "proxmox" {
     username = "root"
     agent    = true
   }
-
 }
 resource "proxmox_virtual_environment_download_file" "ubuntu_24_20250430" {
   content_type        = "iso"
@@ -24,10 +23,10 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_24_20250430" {
   overwrite_unmanaged = true
   url                 = "http://cloud-images.ubuntu.com/noble/20250430/noble-server-cloudimg-amd64.img"
 }
-resource "proxmox_virtual_environment_vm" "test4" {
-  name       = "test4"
-  vm_id      = 4444
-  node_name  = "st1pve1"
+resource "proxmox_virtual_environment_vm" "test1" {
+  name       = "test1"
+  vm_id      = 1111
+  node_name  = "st1pve3"
   tags       = ["tofu", "ubuntu"]
   on_boot    = true
   protection = false
@@ -62,22 +61,24 @@ resource "proxmox_virtual_environment_vm" "test4" {
       domain  = "si.impots.bj"
       servers = ["192.168.0.1"]
     }
+
     user_account {
-      username = "ubuntu"
-      password = "plopplop"
+      username = "root"
+      keys     = var.root_ssh_keys
     }
   }
 }
+
 resource "proxmox_virtual_environment_download_file" "ubuntu_24_04_1" {
   content_type        = "vztmpl"
   datastore_id        = "toolstore"
   node_name           = "st1pve1"
   overwrite_unmanaged = true
-  url                 = "http://download.proxmox.com/images/system/ubuntu-24.04-standard_24.04-1_amd64.tar.zst"
+  url                 = "http://download.proxmox.com/images/system/debian-12-standard_12.7-1_amd64.tar.zst"
 }
 resource "proxmox_virtual_environment_container" "test2" {
-  vm_id         = 2223
-  node_name     = "pve3"
+  vm_id         = 1117
+  node_name     = "st1pve2"
   tags          = ["tofu", "ubuntu"]
   start_on_boot = true
   protection    = false
@@ -96,7 +97,7 @@ resource "proxmox_virtual_environment_container" "test2" {
     hostname = "test2"
     ip_config {
       ipv4 {
-        address = "192.168.0.202/24"
+        address = "192.168.0.209/24"
         gateway = "192.168.0.1"
       }
     }
