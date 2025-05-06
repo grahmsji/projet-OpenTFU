@@ -24,8 +24,8 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_24_20250430" {
   url                 = "http://cloud-images.ubuntu.com/noble/20250430/noble-server-cloudimg-amd64.img"
 }
 resource "proxmox_virtual_environment_vm" "test1" {
-  name       = "test1"
-  vm_id      = 1111
+  name       = "test8"
+  vm_id      = 8888
   node_name  = "st1pve3"
   tags       = ["tofu", "ubuntu"]
   on_boot    = true
@@ -53,7 +53,7 @@ resource "proxmox_virtual_environment_vm" "test1" {
     datastore_id = "vms-shared"
     ip_config {
       ipv4 {
-        address = "192.168.0.201/24"
+        address = "192.168.0.202/24"
         gateway = "192.168.0.1"
       }
     }
@@ -77,7 +77,7 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_24_04_1" {
   url                 = "http://download.proxmox.com/images/system/debian-12-standard_12.7-1_amd64.tar.zst"
 }
 resource "proxmox_virtual_environment_container" "test2" {
-  vm_id         = 1117
+  vm_id         = 8881
   node_name     = "st1pve2"
   tags          = ["tofu", "ubuntu"]
   start_on_boot = true
@@ -97,7 +97,7 @@ resource "proxmox_virtual_environment_container" "test2" {
     hostname = "test2"
     ip_config {
       ipv4 {
-        address = "192.168.0.209/24"
+        address = "192.168.0.208/24"
         gateway = "192.168.0.1"
       }
     }
